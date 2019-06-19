@@ -1,3 +1,5 @@
 .idea/
 *.ipynb_checkpoints
 workflow/img
+workflow/nesi/log/*
+!workflow/nesi/log/.gitkeep

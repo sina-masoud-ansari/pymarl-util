@@ -1,0 +1,9 @@
+sl=$1 # slurm file
+n=12 # number of jobs to submit
+
+for ((i = 1; i <= n; i++)); do
+    echo $i/$n
+    sbatch $sl
+    sleep 6
+done
+
