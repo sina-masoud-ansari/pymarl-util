@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
 #SBATCH --account uoa02776
-#SBATCH --time 4:00:00
-#SBATCH --mem 100G
-#SBATCH --cpus-per-task 36
+#SBATCH --time 3:00:00
+#SBATCH --mem 70G
+#SBATCH --cpus-per-task 10
 #SBATCH --partition large
 
 #SBATCH --chdir	/nesi/project/uoa02776/pymarl
@@ -11,6 +11,7 @@
 #SBATCH --output /nesi/project/uoa02776/pymarl-util/workflow/nesi/logs/pymarl.%j.out
 #SBATCH --error /nesi/project/uoa02776/pymarl-util/workflow/nesi/logs/pymarl.%j.err
 #SBATCH --profile task
+#SBATCH --acctg-freq=task=10
 
 # required to run on GPU
 #module load CUDA/10.0.130
@@ -26,7 +27,7 @@ map=3m
 config=qmix_smac.yaml
 
 # replace batch_size_run with the number of cpus
-cpus=$SLURM_CPUS_PER_TASK
+cpus=72
 nesi_config=${config%.*}_nesi_${cpus}
 sed src/config/algs/$config -e "s/batch_size_run.*/batch_size_run: $cpus/" > src/config/algs/${nesi_config}.yaml
 
